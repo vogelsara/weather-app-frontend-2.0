@@ -6,7 +6,7 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import { rows } from './Temperatures/query'
+import useTemperatureRows from './Temperatures/query'
 import { Temperature } from './Temperatures/Temperature'
 
 const useStyles = makeStyles({
@@ -17,6 +17,9 @@ const useStyles = makeStyles({
 
 export default function TemperatureTable() {
     const classes = useStyles()
+    const temperatureData = useTemperatureRows()
+
+    const rows = temperatureData.data?.data
 
     return (
         <TableContainer component={Paper}>
@@ -32,7 +35,7 @@ export default function TemperatureTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.data?.map((row) => (
+                    {rows?.map((row: Temperature) => (
                         <TableRow key={row.date}>
                             <TableCell component="th" scope="row">
                                 {row.date}
