@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -8,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import useTemperatureRows from './Temperatures/query'
 import { Temperature } from './Temperatures/Temperature'
+import GeoForm from './GeoForm'
 
 const useStyles = makeStyles({
     table: {
@@ -17,12 +19,21 @@ const useStyles = makeStyles({
 
 export default function TemperatureTable() {
     const classes = useStyles()
-    const temperatureData = useTemperatureRows()
 
+    const [lat, setLat] = useState('')
+    const [lon, setLon] = useState('')
+
+    const temperatureData = useTemperatureRows(lat, lon)
     const rows = temperatureData.data?.data
+
+    function updateCoordinates(lat: string, lon: string): void {
+        setLat(lat)
+        setLon(lon)
+    }
 
     return (
         <TableContainer component={Paper}>
+            <GeoForm handleSubmit={updateCoordinates} />
             <h1>Weather report of last 4 days</h1>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
@@ -58,4 +69,5 @@ export default function TemperatureTable() {
             </Table>
         </TableContainer>
     )
+
 }

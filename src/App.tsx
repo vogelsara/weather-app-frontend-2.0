@@ -1,4 +1,3 @@
-import React from 'react'
 import TemperatureTable from './TemperatureTable'
 
 import './App.css'
