@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import useTemperatureRows from './Temperatures/query'
 import { Temperature } from './Temperatures/Temperature'
-import GeoForm from './GeoForm'
+import GeoForm from './Forms/GeoForm'
 
 const useStyles = makeStyles({
     table: {
