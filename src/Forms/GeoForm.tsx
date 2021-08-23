@@ -6,7 +6,7 @@ import {
  } from 'formik'
 
  type Props = {
-     handleSubmit: (lat: string, lon: string) => void
+     handleSubmit: (lat: number, lon: number) => void
  }
 
  export default function GeoForm(props: Props) {
@@ -14,22 +14,17 @@ import {
     return(
     <Formik
         initialValues={{
-            lat: '',
-            lon: ''
+            lat: 0,
+            lon: 0
         }}
-        onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-                props.handleSubmit(values.lat, values.lon)
-                setSubmitting(false);
-            }, 400);
+        onSubmit={(values) => {         
+            props.handleSubmit(values.lat, values.lon)          
         }}
     >
     {({ isSubmitting }) => (
         <Form>
             <Field type="number" name="lat" />
             <Field type="number" name="lon" />
-            <ErrorMessage name="lat" component="div" />
-            <ErrorMessage name="lon" component="div" />
             <button type="submit" disabled={isSubmitting}>
                 Submit
             </button>

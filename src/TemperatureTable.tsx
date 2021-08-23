@@ -20,15 +20,13 @@ const useStyles = makeStyles({
 export default function TemperatureTable() {
     const classes = useStyles()
 
-    const [lat, setLat] = useState('')
-    const [lon, setLon] = useState('')
+    const [coordinates, setCoordinates] = useState({lat:0, lon:0})
 
-    const temperatureData = useTemperatureRows(lat, lon)
-    const rows = temperatureData.data?.data
+    const temperatureData = useTemperatureRows(coordinates)
+    const rows = temperatureData.data
 
-    function updateCoordinates(lat: string, lon: string): void {
-        setLat(lat)
-        setLon(lon)
+    function updateCoordinates(lat: number, lon: number): void {
+        setCoordinates({lat, lon})
     }
 
     return (

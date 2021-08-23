@@ -1,12 +1,18 @@
-import { useQuery } from 'react-query'
+import { useQuery, UseQueryResult } from 'react-query'
 import axios from 'axios'
+import { Temperature } from './Temperature';
 
 axios.defaults.baseURL = 'http://localhost:8000'
 
-export default function useTemperatureRows(lat: string, lon: string) {
-	return useQuery('temperatures', () =>
+type Coordinates = {
+    lat: number,
+    lon: number
+}
+
+export default function useTemperatureRows(coordinates: Coordinates): UseQueryResult<Temperature[]> {
+	return useQuery<Coordinates, unknown, Temperature[]>(['temperatures', coordinates], () =>
     axios
-        .get(`/?lat=${lat}&lon=${lon}`)
-        .then(res => res)
+        .get(`/?lat=${coordinates.lat}&lon=${coordinates.lon}`)
+        .then(res => res.data)
     );
 }
