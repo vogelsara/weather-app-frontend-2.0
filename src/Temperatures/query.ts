@@ -1,13 +1,9 @@
 import { useQuery, UseQueryResult } from 'react-query'
 import axios from 'axios'
-import { Temperature } from './Temperature';
+import { Temperature } from './Temperature'
+import { Coordinates } from '../Types/Coordinates'
 
 axios.defaults.baseURL = 'http://localhost:8000'
-
-type Coordinates = {
-    lat: number,
-    lon: number
-}
 
 export default function useTemperatureRows(coordinates: Coordinates): UseQueryResult<Temperature[]> {
 	return useQuery<Coordinates, unknown, Temperature[]>(['temperatures', coordinates], () =>
