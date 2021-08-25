@@ -1,11 +1,11 @@
-import TemperatureTable from './TemperatureTable'
+import TemperaturePage from './TemperaturePage'
 
 import './App.css'
 
 function App() {
     return (
         <div className="App">
-            <TemperatureTable />
+            <TemperaturePage />
         </div>
     )
 }

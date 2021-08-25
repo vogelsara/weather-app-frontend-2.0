@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     },
 })
 
-export default function TemperatureTable() {
+export default function TemperaturePage() {
     const classes = useStyles()
 
     const [coordinates, setCoordinates] = useState({lat:0, lon:0})
