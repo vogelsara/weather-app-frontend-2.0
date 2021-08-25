@@ -2,15 +2,14 @@ import {
     Formik,
     Form,
     Field,
-    ErrorMessage,
- } from 'formik'
- import { Coordinates } from '../Types/Coordinates'
+} from 'formik'
+import { Coordinates } from '../Types/Coordinates'
 
- type Props = {
-     handleSubmit: (lat: number, lon: number) => void
- }
+type Props = {
+    handleSubmit: (lat: number, lon: number) => void
+}
 
- export default function GeoForm(props: Props) {
+export default function GeoForm(props: Props) {
 
     const initialCoordinates: Coordinates = {
         lat: 0,
