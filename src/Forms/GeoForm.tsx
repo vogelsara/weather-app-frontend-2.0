@@ -16,7 +16,8 @@ const GeoSchema = Yup.object().shape({
   });
 
 type Props = {
-    handleSubmit: (lat: number, lon: number) => void
+    handleSubmit: (lat: number, lon: number) => void,
+    resultIsLoading: boolean
 }
 
 export default function GeoForm(props: Props) {
@@ -46,7 +47,7 @@ export default function GeoForm(props: Props) {
                     {errors.lon && touched.lon ? (
                         <div>{errors.lon}</div>
                     ) : null}
-                    <button type="submit" disabled={isSubmitting}>
+                    <button type="submit" disabled={isSubmitting || props.resultIsLoading}>
                         Submit
                     </button>
                 </Form>

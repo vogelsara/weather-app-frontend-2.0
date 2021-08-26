@@ -19,7 +19,7 @@ export default function TemperaturePage() {
 
     return (
         <TableContainer component={Paper}>
-            <GeoForm handleSubmit={updateCoordinates} />
+            <GeoForm handleSubmit={updateCoordinates} resultIsLoading={temperatureData.isLoading} />
             <h1>Weather report of last 4 days</h1>
             {temperatureData.isLoading ? <CircularProgress /> : <TemperatureTable rows={rows} />}
         </TableContainer>
