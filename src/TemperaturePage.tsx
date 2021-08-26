@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import TableContainer from '@material-ui/core/TableContainer'
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Paper from '@material-ui/core/Paper'
 import useTemperatureRows from './Temperatures/query'
 import GeoForm from './Forms/GeoForm'
@@ -20,7 +21,7 @@ export default function TemperaturePage() {
         <TableContainer component={Paper}>
             <GeoForm handleSubmit={updateCoordinates} />
             <h1>Weather report of last 4 days</h1>
-            <TemperatureTable rows={rows} />
+            {temperatureData.isLoading ? <CircularProgress /> : <TemperatureTable rows={rows} />}
         </TableContainer>
     )
 
