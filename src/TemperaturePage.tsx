@@ -15,6 +15,7 @@ export default function TemperaturePage() {
 
     function updateCoordinates(lat: number, lon: number): void {
         setCoordinates({lat, lon})
+        console.log({lat, lon})
     }
 
     return (

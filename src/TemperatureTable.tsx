@@ -17,14 +17,14 @@ type Props = {
     rows: Temperature[] | undefined
 }
 
-export default function TemperaturePage(props: Props) {
+export default function TemperatureTable(props: Props) {
     const classes = useStyles()
 
     return (
         <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Göteborg</TableCell>
+                        <TableCell></TableCell>
                         <TableCell align="right">Mean (°C)</TableCell>
                         <TableCell align="right">Median (°C)</TableCell>
                         <TableCell align="right">Minimum (°C)</TableCell>

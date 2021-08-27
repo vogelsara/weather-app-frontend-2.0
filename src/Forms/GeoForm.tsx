@@ -1,7 +1,9 @@
+import { Button, FormLabel, TextField } from '@material-ui/core';
 import { 
     Formik,
     Form,
     Field,
+    useField,
 } from 'formik'
 import * as Yup from 'yup';
 import { Coordinates } from '../Types/Coordinates'
@@ -12,7 +14,7 @@ const GeoSchema = Yup.object().shape({
             .max(90, 'Latitude must be maximum 90'),
     lon: Yup.number()
             .min(-180, 'Longitude must be minimum -180')
-            .max(180, 'Longitude must be maximum 180'),
+            .max(180, 'Longitude must be maximum 180')
   });
 
 type Props = {
@@ -37,22 +39,28 @@ export default function GeoForm(props: Props) {
             validationSchema={GeoSchema}
             onSubmit={updateCoordinates}
         >
-            {({ isSubmitting, errors, touched }) => (
-                <Form>
-                    <Field type="number" step=".0001" name="lat" />
-                    {errors.lat && touched.lat ? (
-                        <div>{errors.lat}</div>
-                    ) : null}
-                    <Field type="number" step=".0001" name="lon" />
-                    {errors.lon && touched.lon ? (
-                        <div>{errors.lon}</div>
-                    ) : null}
-                    <button type="submit" disabled={isSubmitting || props.resultIsLoading}>
-                        Submit
-                    </button>
-                </Form>
-            )}
+            <Form>
+                <NumberField name="lat" />
+                <NumberField name="lon" />
+            
+                <Button type="submit" variant="contained" color="primary" disabled={props.resultIsLoading}>
+                    Submit
+                </Button>
+            </Form>
         </Formik>
     )
  }
 
+function NumberField({name}: any) {
+    const [field, meta] = useField({ name })
+    const isError = meta.error !== undefined
+    const errorText = isError ? meta.error : null
+    return (
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+        }}>
+        <TextField {...field} error={isError} helperText={errorText}/>
+        </div>
+    )
+}
