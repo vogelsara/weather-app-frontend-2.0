@@ -21,7 +21,7 @@ export default function TemperatureTable(props: Props) {
     const classes = useStyles()
 
     return (
-        <Table className={classes.table} aria-label="simple table">
+        <Table className={classes.table} aria-label="simple table" style={{width: "75%", margin:"0 auto"}}>
                 <TableHead>
                     <TableRow>
                         <TableCell></TableCell>

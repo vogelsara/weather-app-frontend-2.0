@@ -1,10 +1,12 @@
-import { Button, FormLabel, TextField } from '@material-ui/core';
+import { Box, Button, FormLabel, TextField } from '@material-ui/core';
 import { 
     Formik,
     Form,
     Field,
     useField,
-} from 'formik'
+} from 'formik';
+
+import { NumberField } from './NumberField';
 import * as Yup from 'yup';
 import { Coordinates } from '../Types/Coordinates'
 
@@ -39,10 +41,11 @@ export default function GeoForm(props: Props) {
             validationSchema={GeoSchema}
             onSubmit={updateCoordinates}
         >
-            <Form>
-                <NumberField name="lat" />
-                <NumberField name="lon" />
-            
+            <Form style={{margin:"2em 0"}}>
+                <Box display="flex" justifyContent="center" margin="2em auto 1em auto">
+                    <NumberField name="lat" />
+                    <NumberField name="lon" />
+                </Box>
                 <Button type="submit" variant="contained" color="primary" disabled={props.resultIsLoading}>
                     Submit
                 </Button>
@@ -51,16 +54,3 @@ export default function GeoForm(props: Props) {
     )
  }
 
-function NumberField({name}: any) {
-    const [field, meta] = useField({ name })
-    const isError = meta.error !== undefined
-    const errorText = isError ? meta.error : null
-    return (
-        <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-        }}>
-        <TextField {...field} error={isError} helperText={errorText}/>
-        </div>
-    )
-}

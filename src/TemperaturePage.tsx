@@ -12,6 +12,7 @@ export default function TemperaturePage() {
 
     const temperatureData = useTemperatureRows(coordinates)
     const rows = temperatureData.data
+    const backgroundColor = 'rgb(78,115,171) linear-gradient(90deg, rgba(78,115,171,1) 0%, rgba(86,143,163,1) 50%, rgba(205,205,205,1) 100%);'
 
     function updateCoordinates(lat: number, lon: number): void {
         setCoordinates({lat, lon})
@@ -19,9 +20,9 @@ export default function TemperaturePage() {
     }
 
     return (
-        <TableContainer component={Paper}>
-            <GeoForm handleSubmit={updateCoordinates} resultIsLoading={temperatureData.isLoading} />
+        <TableContainer component={Paper} style={{boxShadow:"none", height:"100vh" }}>
             <h1>Weather report of last 4 days</h1>
+            <GeoForm handleSubmit={updateCoordinates} resultIsLoading={temperatureData.isLoading} />
             {temperatureData.isLoading ? <CircularProgress /> : <TemperatureTable rows={rows} />}
         </TableContainer>
     )
